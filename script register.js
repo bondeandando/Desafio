@@ -1,12 +1,6 @@
 var tabela = document.getElementById('tabela');
 var id_linha = 1;
-var lista = [
-    // {y: 5.0, name: "Carlos Moura"},
-    // {y: 15.0, name: "Fernanda Oliveira"},
-    // {y: 20.0, name: "Hugo Silva"},
-    // {y: 20.0, name: "Eliz Souza"},
-    // {y: 40.0, name: "Anderson Santos"}
-];
+var lista = [];
 
 
 function keyPress(event) {
@@ -22,10 +16,8 @@ function inserirDados() {
     var lastName      = document.getElementById('input_lastName');
     var participation = document.getElementById('input_participation');
 
-    if(firstName.value == "" || lastName.value == "" || participation.value == ""){
-        // alert("Please fill in all required fields!");
+    if(firstName.value == "" || lastName.value == "" || participation.value == "")
         return;
-    }
 
     //adicionando nova linha na tabela
     var row = tabela.insertRow();
@@ -38,12 +30,12 @@ function inserirDados() {
 
     //atribuindo valores para a nova linha
     cel_id.innerHTML = id_linha++;
-    cel_firstName.innerHTML = firstName.value;
-    cel_lastName.innerHTML = lastName.value;
+    cel_firstName.innerHTML = firstName.value.trim();
+    cel_lastName.innerHTML = lastName.value.trim();
     cel_participation.innerHTML = participation.value + "%";
 
     //atualizando a lista de dados
-    lista.push({y: participation.value, name: firstName.value + " " + lastName.value});
+    lista.push({y: participation.value, name: firstName.value.trim() + " " + lastName.value.trim()});
 
     //atualizando o gráfico
     desenharGrafico(lista);
